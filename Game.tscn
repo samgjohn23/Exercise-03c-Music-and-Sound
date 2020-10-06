@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=38 format=2]
 
 [ext_resource path="res://Paddle/Paddle.gd" type="Script" id=1]
 [ext_resource path="res://Ball/Ball_Container.gd" type="Script" id=2]
@@ -12,8 +12,15 @@
 [ext_resource path="res://Ball/Trail_Container.gd" type="Script" id=10]
 [ext_resource path="res://Camera/WorldEnvironment.gd" type="Script" id=11]
 [ext_resource path="res://Paddle/Face.gd" type="Script" id=12]
+[ext_resource path="res://Assets/mouth.png" type="Texture" id=13]
+[ext_resource path="res://Assets/pupil.png" type="Texture" id=14]
+[ext_resource path="res://Assets/eye.png" type="Texture" id=15]
 [ext_resource path="res://Assets/Datalegreya-Thin.otf" type="DynamicFontData" id=16]
 [ext_resource path="res://Audio/Music.gd" type="Script" id=17]
+[ext_resource path="res://Assets/Brick.wav" type="AudioStream" id=18]
+[ext_resource path="res://Assets/Wall.wav" type="AudioStream" id=19]
+[ext_resource path="res://Assets/Paddle.wav" type="AudioStream" id=20]
+[ext_resource path="res://Assets/Music.ogg" type="AudioStream" id=21]
 
 [sub_resource type="Gradient" id=1]
 colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
@@ -160,6 +167,32 @@ shape = SubResource( 8 )
 [node name="Face" type="Node2D" parent="Paddle_Container/Paddle"]
 script = ExtResource( 12 )
 
+[node name="Eye_left" type="Sprite" parent="Paddle_Container/Paddle/Face"]
+position = Vector2( -35, -10 )
+texture = ExtResource( 15 )
+
+[node name="Eye_right" type="Sprite" parent="Paddle_Container/Paddle/Face"]
+position = Vector2( 35, -10 )
+texture = ExtResource( 15 )
+
+[node name="Pupil_Left" type="Node2D" parent="Paddle_Container/Paddle/Face"]
+position = Vector2( -35, -10 )
+
+[node name="Sprite" type="Sprite" parent="Paddle_Container/Paddle/Face/Pupil_Left"]
+position = Vector2( 10, 0 )
+texture = ExtResource( 14 )
+
+[node name="Pupil_Right" type="Node2D" parent="Paddle_Container/Paddle/Face"]
+position = Vector2( 35, -10 )
+
+[node name="Sprite" type="Sprite" parent="Paddle_Container/Paddle/Face/Pupil_Right"]
+position = Vector2( 10, 0 )
+texture = ExtResource( 14 )
+
+[node name="Sprite" type="Sprite" parent="Paddle_Container/Paddle/Face"]
+position = Vector2( 0, 20 )
+texture = ExtResource( 13 )
+
 [node name="Particles2D" type="Particles2D" parent="Paddle_Container"]
 position = Vector2( 507, 700 )
 emitting = false
@@ -199,13 +232,17 @@ __meta__ = {
 script = ExtResource( 11 )
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 21 )
 script = ExtResource( 17 )
 
 [node name="Effect_Paddle" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 20 )
 
 [node name="Effect_Wall" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 19 )
 
 [node name="Effect_Brick" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 18 )
 
 [node name="HUD" type="Control" parent="."]
 visible = false

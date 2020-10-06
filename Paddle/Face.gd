@@ -9,6 +9,7 @@ func _ready():
 	HUD.connect("changed",self,"_on_HUD_changed")
 	show_face()
 
+#Keeps giving me an error when I put in the code provided for this section 
 func _physics_process(_delta):
 	if get_node("/root/Game/Ball_Container").has_node("Ball"):
 		pass
